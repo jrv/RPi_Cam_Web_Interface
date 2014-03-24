@@ -82,8 +82,8 @@ case "$1" in
         sudo cp -r www/* /var/www/
         sudo mkdir -p /var/www/media
         sudo chown -R www-data:www-data /var/www
-        sudo mknod /var/www/FIFO p
-        sudo chmod 666 /var/www/FIFO
+        sudo mknod /var/www/admin/FIFO p
+        sudo chmod 666 /var/www/admin/FIFO
         sudo cp -r etc/apache2/sites-available/default /etc/apache2/sites-available/
         sudo chmod 644 /etc/apache2/sites-available/default
         sudo cp etc/apache2/conf.d/other-vhosts-access-log /etc/apache2/conf.d/other-vhosts-access-log
@@ -122,7 +122,7 @@ case "$1" in
         shopt -u nullglob
 
         sudo mkdir -p /dev/shm/mjpeg
-        sudo raspimjpeg -w 512 -h 288 -wp 512 -hp 384 -d 1 -q 25 -of /dev/shm/mjpeg/cam.jpg -cf /var/www/FIFO -sf /var/www/status_mjpeg.txt -vf /var/www/media/video_%04d_%04d%02d%02d_%02d%02d%02d.mp4 -if /var/www/media/image_%04d_%04d%02d%02d_%02d%02d%02d.jpg -p -ic $image -vc $video > /dev/null &
+        sudo raspimjpeg -w 512 -h 288 -wp 512 -hp 384 -d 1 -q 25 -of /dev/shm/mjpeg/cam.jpg -cf /var/www/admin/FIFO -sf /var/www/status_mjpeg.txt -vf /var/www/media/video_%04d_%04d%02d%02d_%02d%02d%02d.mp4 -if /var/www/media/image_%04d_%04d%02d%02d_%02d%02d%02d.jpg -p -ic $image -vc $video > /dev/null &
         echo "Started"
         ;;
 
