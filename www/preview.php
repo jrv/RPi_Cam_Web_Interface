@@ -6,19 +6,11 @@
   <body>
     <p><a href="index.html">Back</a></p>
     <?php
-      if(isset($_GET["delete"])) {
-        unlink("media/" . $_GET["delete"]);
-      }
-      if(isset($_GET["delete_all"])) {
-        $files = scandir("media");
-        foreach($files as $file) unlink("media/$file");
-      }
-      else if(isset($_GET["file"])) {
+      if(isset($_GET["file"])) {
         echo "<h1>Preview</h1>";
         if(substr($_GET["file"], -3) == "jpg") echo "<img src='media/" . $_GET["file"] . "' width='480' height='360'>";
         else echo "<video width='640' height='360' controls><source src='media/" . $_GET["file"] . "' type='video/mp4'>Your browser does not support the video tag.</video>";
         echo "<p><input type='button' value='Download' onclick='window.open(\"download.php?file=" . $_GET["file"] . "\", \"_blank\");'> ";
-        echo "<input type='button' value='Delete' onclick='window.location=\"preview.php?delete=" . $_GET["file"] . "\";'></p>";
       }
     ?>
     <h1>Files</h1>
@@ -32,7 +24,6 @@
             echo "<p><a href='preview.php?file=$file'>$file</a> ($fsz MB)</p>";
           }
         }
-        echo "<p><input type='button' value='Delete all' onclick='if(confirm(\"Delete all?\")) {window.location=\"preview.php?delete_all\";}'></p>";
       }
     ?>
   </body>
