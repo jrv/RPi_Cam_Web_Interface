@@ -215,6 +215,10 @@ function send_cmd (cmd) {
   ajax_cmd.send();
 }
 
+function handleled(led) {
+  ajax_cmd.open("GET","ledset.php?led=" + led.name + "&val=" + led.checked);
+  ajax_cmd.send();
+}
 //
 // Init
 //
